@@ -30,7 +30,7 @@ export const ConvexClientProvider: React.FC<ConvexClientProviderProps> = ({
       >
         <Unauthenticated>{children}</Unauthenticated>
         <Authenticated>{children}</Authenticated>
-        <AuthLoading>{/* <h1>Loading...</h1> */}</AuthLoading>
+        {/* <AuthLoading><h1>Loading...</h1></AuthLoading> */}
       </ConvexProviderWithClerk>
     </ClerkProvider>
   );
