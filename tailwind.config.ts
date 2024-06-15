@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -74,7 +74,35 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    function ({ addUtilities }: any) {
+      addUtilities(
+        {
+          ".scrollbar-thin": {
+            "::-webkit-scrollbar": {
+              width: "8px",
+              height: "8px",
+            },
+            "::-webkit-scrollbar-track": {
+              background: "#f1f1f1",
+            },
+            "::-webkit-scrollbar-thumb": {
+              background: "#888",
+              borderRadius: "10px",
+            },
+            "::-webkit-scrollbar-thumb:hover": {
+              background: "#555",
+            },
+            "scrollbar-width": "thin",
+            "scrollbar-color": "#888 #f1f1f1",
+          },
+        },
+        ["responsive"]
+      );
+    },
+  ],
+} satisfies Config;
 
-export default config
+export default config;
