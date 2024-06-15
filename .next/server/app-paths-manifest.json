@@ -1,1 +1,7 @@
-{}
+{
+  "/(auth)/sign-in/[[...sign-in]]/page": "app/(auth)/sign-in/[[...sign-in]]/page.js",
+  "/api/messages/route": "app/api/messages/route.js",
+  "/(main)/project/page": "app/(main)/project/page.js",
+  "/(main)/project/[projectId]/page": "app/(main)/project/[projectId]/page.js",
+  "/(main)/project/[projectId]/channels/[channelId]/page": "app/(main)/project/[projectId]/channels/[channelId]/page.js"
+}
