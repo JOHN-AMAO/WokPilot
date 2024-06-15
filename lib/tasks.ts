@@ -1,25 +1,21 @@
 "use server";
 import { db } from "@/lib/db";
 
-export const getTasks = async (projectId: string) => {
-  const tasks = await db.task.findMany({
-    where: {
-      projectId: projectId,
-    },
-  });
-  return tasks;
-};
-
 export const createTask = async (values: any) => {
+  console.log(values);
+  const durationInDays =
+    (values.duration?.to - values.duration?.from) / (1000 * 60 * 60 * 24);
   const task = await db.task.create({
     data: {
       description: values.description,
       fromDate: values.duration?.from,
       toDate: values.duration?.to,
-      duration: values.duration,
-      projectId: values.projectId,
-      profileId: values.userId,
-      collaborators: values.collaborators,
+      duration: Math.ceil(durationInDays),
+      collaborators: {
+        create: values.collaborators.map((collaborator: any) => ({
+          name: collaborator,
+        })),
+      },
     },
   });
   return task;
