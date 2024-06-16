@@ -32,7 +32,7 @@ const Page = async ({ params }: TaskIdprops) => {
             projectId={params.taskId}
           />
         </div>
-        <KanbanBoard />
+        <KanbanBoard projectId={params.taskId} />
       </div>
     </>
   );

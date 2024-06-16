@@ -17,6 +17,7 @@ export interface Task {
 interface TaskCardProps {
   task: Task;
   isOverlay?: boolean;
+  projectId: string;
 }
 
 export type TaskType = "Task";
@@ -26,7 +27,7 @@ export interface TaskDragData {
   task: Task;
 }
 
-export function TaskCard({ task, isOverlay }: TaskCardProps) {
+export function TaskCard({ task, isOverlay, projectId }: TaskCardProps) {
   const {
     setNodeRef,
     attributes,

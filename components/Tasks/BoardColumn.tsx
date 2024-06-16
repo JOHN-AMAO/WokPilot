@@ -25,9 +25,15 @@ interface BoardColumnProps {
   column: Column;
   tasks: Task[];
   isOverlay?: boolean;
+  projectId: string;
 }
 
-export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
+export function BoardColumn({
+  column,
+  tasks,
+  isOverlay,
+  projectId,
+}: BoardColumnProps) {
   const tasksIds = useMemo(() => {
     return tasks.map((task) => task.id);
   }, [tasks]);
@@ -95,6 +101,7 @@ export function BoardColumn({ column, tasks, isOverlay }: BoardColumnProps) {
               <TaskCard
                 key={task.id}
                 task={task}
+                projectId={projectId}
               />
             ))}
           </SortableContext>

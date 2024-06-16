@@ -1,6 +1,15 @@
 "use server";
 import { db } from "@/lib/db";
 
+export const getTasks = async (projectId: string) => {
+  const tasks = await db.task.findMany({
+    where: {
+      projectId: projectId,
+    },
+  });
+  return tasks;
+};
+
 export const createTask = async (values: any) => {
   console.log(values);
   const durationInDays =

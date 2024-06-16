@@ -106,7 +106,7 @@ const initialTasks: Task[] = [
     content: "Launch website and deploy to server",
   },
 ];
-export function KanbanBoard() {
+export function KanbanBoard({ projectId }: any) {
   const [columns, setColumns] = useState<Column[]>(defaultCols);
   const pickedUpTaskColumn = useRef<ColumnId | null>(null);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
@@ -247,6 +247,7 @@ export function KanbanBoard() {
             <BoardColumn
               key={col.id}
               column={col}
+              projectId={projectId}
               tasks={tasks.filter((task) => task.columnId === col.id)}
             />
           ))}
@@ -258,6 +259,7 @@ export function KanbanBoard() {
           <DragOverlay>
             {activeColumn && (
               <BoardColumn
+                projectId={projectId}
                 isOverlay
                 column={activeColumn}
                 tasks={tasks.filter(
@@ -267,6 +269,7 @@ export function KanbanBoard() {
             )}
             {activeTask && (
               <TaskCard
+                projectId={projectId}
                 task={activeTask}
                 isOverlay
               />
