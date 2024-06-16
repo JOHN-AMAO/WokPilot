@@ -16,6 +16,7 @@ export const createTask = async (values: any) => {
           name: collaborator,
         })),
       },
+      projectId: values.projectId,
     },
   });
   return task;
