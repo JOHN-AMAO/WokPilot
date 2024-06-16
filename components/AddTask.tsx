@@ -82,9 +82,9 @@ const AddTask = ({ projectId, profileId }: any) => {
     values.collaborators = selectedCollaborators; // Ensure selectedCollaborators are included in form values
     console.log(values);
     try {
-      //   const task = await createTask(values);
-      //   console.log("Task created successfully:", task);
-      axios.post("/api/tasks", values);
+      const task = await createTask(values);
+      console.log("Task created successfully:", task);
+      // axios.post("/api/tasks", values);
     } catch (error) {
       console.error("Error creating task:", error);
     }
