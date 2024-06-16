@@ -42,6 +42,31 @@
       "static/chunks/main-app.js",
       "static/css/app/(main)/project/[projectId]/channels/[channelId]/page.css",
       "static/chunks/app/(main)/project/[projectId]/channels/[channelId]/page.js"
+    ],
+    "/(main)/ai-chat/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/ai-chat/page.js"
+    ],
+    "/(main)/ai-chat/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/ai-chat/layout.js"
+    ],
+    "/(main)/tasks/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/tasks/page.js"
+    ],
+    "/(main)/tasks/layout": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/tasks/layout.js"
+    ],
+    "/(main)/tasks/[taskId]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/(main)/tasks/[taskId]/page.js"
     ]
   }
 }
