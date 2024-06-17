@@ -5,6 +5,7 @@ import { db } from "@/lib/db";
 import { ParkingMeter } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
+import { TaskProvider } from "@/Provider/TaskContext";
 
 interface TaskIdprops {
   params: {
@@ -24,16 +25,18 @@ const Page = async ({ params }: TaskIdprops) => {
 
   return (
     <>
-      <div className='bg-black'>
-        <div className='flex flex-row justify-between items-center pt-10  p-10'>
-          <h1>/{project?.name}</h1>
-          <AddTask
-            profileId={profile.id}
-            projectId={params.taskId}
-          />
+      <TaskProvider>
+        <div className='bg-black'>
+          <div className='flex flex-row justify-between items-center pt-10  p-10'>
+            <h1>/{project?.name}</h1>
+            <AddTask
+              profileId={profile.id}
+              projectId={params.taskId}
+            />
+          </div>
+          <KanbanBoard projectId={params.taskId} />
         </div>
-        <KanbanBoard projectId={params.taskId} />
-      </div>
+      </TaskProvider>
     </>
   );
 };

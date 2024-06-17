@@ -18,6 +18,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useTransition } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
@@ -35,7 +36,8 @@ import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { createTask } from "@/lib/tasks";
-import axios from "axios";
+import { useTaskContext } from "@/Provider/TaskContext";
+import { useRouter } from "next/navigation";
 
 const CollaboratorsList = [
   { value: "Alice", label: "Alice", icon: Turtle },
@@ -59,6 +61,9 @@ const formSchema = z.object({
 });
 
 const AddTask = ({ projectId, profileId }: any) => {
+  const { updateTasks } = useTaskContext();
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
   const [selectedCollaborators, setSelectedCollaborators] = useState<string[]>([
     "Alice",
     "Bob",
@@ -83,6 +88,8 @@ const AddTask = ({ projectId, profileId }: any) => {
     console.log(values);
     try {
       const task = await createTask(values);
+      updateTasks();
+      // window.location.reload();
       console.log("Task created successfully:", task);
       // axios.post("/api/tasks", values);
     } catch (error) {
@@ -95,7 +102,10 @@ const AddTask = ({ projectId, profileId }: any) => {
 
   return (
     <div>
-      <Dialog>
+      <Dialog
+        open={open}
+        onOpenChange={setOpen}
+      >
         <DialogTrigger>
           <button className='bg-gradient-to-r p-2 rounded-lg from-violet-600 to-indigo-600 flex'>
             <Plus />
@@ -205,7 +215,14 @@ const AddTask = ({ projectId, profileId }: any) => {
                   )}
                 />
               </div>
-              <Button type='submit'>Submit</Button>
+              <Button
+                type='submit'
+                onClick={() => {
+                  setOpen(false);
+                }}
+              >
+                Submit
+              </Button>
             </form>
           </Form>
         </DialogContent>

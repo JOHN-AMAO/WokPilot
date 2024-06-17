@@ -6,12 +6,16 @@ import { Button } from "@/components/ui/button";
 import { cva } from "class-variance-authority";
 import { GripVertical } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { ColumnId } from "./KanbanBoard";
+import { TaskStatus } from "@prisma/client";
 
 export interface Task {
   id: UniqueIdentifier;
-  columnId: ColumnId;
-  content: string;
+  status: TaskStatus;
+  description: string;
+  duration: number;
+  fromDate: Date;
+  toDate: Date;
+  projectId: string;
 }
 
 interface TaskCardProps {
@@ -86,7 +90,7 @@ export function TaskCard({ task, isOverlay, projectId }: TaskCardProps) {
         </Badge>
       </CardHeader>
       <CardContent className='px-3 pt-3 pb-6 text-left whitespace-pre-wrap'>
-        {task.content}
+        {task.description}
       </CardContent>
     </Card>
   );

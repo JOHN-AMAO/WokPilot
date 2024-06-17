@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/lib/db";
+import { revalidatePath } from "next/cache";
 
 export const getTasks = async (projectId: string) => {
   const tasks = await db.task.findMany({
@@ -7,6 +8,7 @@ export const getTasks = async (projectId: string) => {
       projectId: projectId,
     },
   });
+  revalidatePath(`/tasks/${projectId}`);
   return tasks;
 };
 
@@ -28,5 +30,6 @@ export const createTask = async (values: any) => {
       projectId: values.projectId,
     },
   });
+  revalidatePath(`/tasks/${values.projectId}`);
   return task;
 };
