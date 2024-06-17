@@ -107,7 +107,7 @@ const AddTask = ({ projectId, profileId }: any) => {
         onOpenChange={setOpen}
       >
         <DialogTrigger>
-          <button className='bg-gradient-to-r p-2 rounded-lg from-violet-600 to-indigo-600 flex'>
+          <button className=' bg-blue-600 transition p-2 hover:scale-110 duration-100  rounded-lg flex'>
             <Plus />
             <span>Add Task</span>
           </button>

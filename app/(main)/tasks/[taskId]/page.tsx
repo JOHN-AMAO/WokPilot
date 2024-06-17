@@ -2,10 +2,18 @@ import AddTask from "@/components/AddTask";
 import { KanbanBoard } from "@/components/Tasks/KanbanBoard";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { ParkingMeter } from "lucide-react";
+import { ParkingMeter, Slash } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 import { TaskProvider } from "@/Provider/TaskContext";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 interface TaskIdprops {
   params: {
@@ -28,7 +36,20 @@ const Page = async ({ params }: TaskIdprops) => {
       <TaskProvider>
         <div className='bg-black'>
           <div className='flex flex-row justify-between items-center pt-10  p-10'>
-            <h1>/{project?.name}</h1>
+            <Breadcrumb className='hidden md:flex'>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbSeparator>
+                    <Slash />
+                  </BreadcrumbSeparator>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href={`/project/${project.id}`}>{project?.name}</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
             <AddTask
               profileId={profile.id}
               projectId={params.taskId}

@@ -51,6 +51,12 @@ const initialTasks: Task[] = [
     duration: 10,
     toDate: new Date("2023-01-02"),
     projectId: "1",
+    collaborators: [
+      {
+        id: "collab-1",
+        name: "Collaborator One",
+      },
+    ],
   },
 ];
 

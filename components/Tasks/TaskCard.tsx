@@ -4,9 +4,9 @@ import { CSS } from "@dnd-kit/utilities";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cva } from "class-variance-authority";
-import { GripVertical } from "lucide-react";
+import { GripVertical, TimerIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { TaskStatus } from "@prisma/client";
+import { Collaborator, TaskStatus } from "@prisma/client";
 
 export interface Task {
   id: UniqueIdentifier;
@@ -16,6 +16,7 @@ export interface Task {
   fromDate: Date;
   toDate: Date;
   projectId: string;
+  collaborators: Collaborator[];
 }
 
 interface TaskCardProps {
@@ -89,8 +90,19 @@ export function TaskCard({ task, isOverlay, projectId }: TaskCardProps) {
           Task
         </Badge>
       </CardHeader>
-      <CardContent className='px-3 pt-3 pb-6 text-left whitespace-pre-wrap'>
-        {task.description}
+      <CardContent className='px-3 pt-3 pb-6 text-left whitespace-pre-wrap '>
+        <div className='flex flex-col gap-4'>
+          <div>{task.description}</div>
+          <div className='flex justify-between '>
+            <div className='flex flex-row gap-2'>
+              <TimerIcon />
+              <p>{task.duration} days</p>
+            </div>
+            <div>
+              <p>collaborators</p>
+            </div>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
