@@ -22,7 +22,7 @@ import { type Task, TaskCard } from "./TaskCard";
 import type { Column } from "./BoardColumn";
 import { hasDraggableData } from "./utils";
 import { coordinateGetter } from "./MultipleContainerKeyboardPreset";
-import { getTasks } from "@/lib/tasks";
+import { getTasks, updateStatus } from "@/lib/tasks";
 import { useTaskContext } from "@/Provider/TaskContext";
 
 const defaultCols = [
@@ -262,32 +262,66 @@ export function KanbanBoard({ projectId }: any) {
     }
   }
 
-  function onDragEnd(event: DragEndEvent) {
+  async function onDragEnd(event: DragEndEvent) {
     setActiveColumn(null);
     setActiveTask(null);
 
-    const { active, over } = event;
+    const { active, over, collisions } = event;
     if (!over) return;
+    if (!collisions) return;
+    const status = collisions[1].id;
 
     const activeId = active.id;
     const overId = over.id;
-
+    console.log(status);
+    console.log(activeId);
+    console.log(projectId);
     if (!hasDraggableData(active)) return;
 
     const activeData = active.data.current;
+    const overData = over.data.current;
 
     if (activeId === overId) return;
 
     const isActiveAColumn = activeData?.type === "Column";
-    if (!isActiveAColumn) return;
+    if (isActiveAColumn) {
+      setColumns((columns) => {
+        const activeColumnIndex = columns.findIndex(
+          (col) => col.id === activeId
+        );
+        const overColumnIndex = columns.findIndex((col) => col.id === overId);
+        return arrayMove(columns, activeColumnIndex, overColumnIndex);
+      });
+      return;
+    }
 
-    setColumns((columns) => {
-      const activeColumnIndex = columns.findIndex((col) => col.id === activeId);
+    const isActiveATask = activeData?.type === "Task";
+    if (isActiveATask) {
+      const activeTask = tasks.find((task) => task.id === activeId);
+      const overTask = tasks.find((task) => task.id === overId);
 
-      const overColumnIndex = columns.findIndex((col) => col.id === overId);
+      if (!activeTask) return;
 
-      return arrayMove(columns, activeColumnIndex, overColumnIndex);
-    });
+      if (overTask && activeTask.status !== overTask.status) {
+        activeTask.status = overTask.status;
+      } else if (overData?.type === "Column") {
+        activeTask.status = overId as status;
+      }
+
+      setTasks((tasks) =>
+        tasks.map((task) =>
+          task.id === activeId ? { ...task, status: activeTask.status } : task
+        )
+      );
+
+      // Call updateStatus to update the task status in the database
+
+      const updateData = async () => {
+        // @ts-ignore
+        await updateStatus(projectId, activeId, status);
+      };
+      updateData();
+    }
   }
 
   function onDragOver(event: DragOverEvent) {

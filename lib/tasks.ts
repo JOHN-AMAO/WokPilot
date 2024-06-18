@@ -1,5 +1,6 @@
 "use server";
 import { db } from "@/lib/db";
+import { TaskStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export const getTasks = async (projectId: string) => {
@@ -32,4 +33,26 @@ export const createTask = async (values: any) => {
   });
   revalidatePath(`/tasks/${values.projectId}`);
   return task;
+};
+
+export const updateStatus = async (
+  projectId: string,
+  taskId: string,
+  status: TaskStatus
+) => {
+  try {
+    const newStatus = await db.task.update({
+      where: {
+        projectId: projectId,
+        id: taskId,
+      },
+      data: {
+        status: status,
+      },
+    });
+    return newStatus; // Adjust according to what db.task.update returns
+  } catch (error) {
+    console.error("Error updating task status:", error);
+    throw error; // Handle error appropriately
+  }
 };
