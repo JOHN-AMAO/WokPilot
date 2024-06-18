@@ -98,6 +98,7 @@ const config = {
         "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
         slide: "slide var(--speed) ease-in-out infinite alternate",
+        text: "text 2s ease infinite",
       },
     },
   },

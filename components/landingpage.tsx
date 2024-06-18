@@ -5,11 +5,13 @@ import MobileNav from "./MobileNav";
 import { HeroTransitions } from "./HeroTransitions";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import ShimmerButton from "./magicui/shimer-button";
+import SparklesText from "./magicui/sparkles-text";
+import { BentoGridSecondDemo } from "./Bento";
 
 export function Landingpage() {
   return (
-    <div className='flex flex-col min-h-[100dvh] text-white bg-black'>
-      <div className='flex flex-col min-h-screen  '>
+    <div className='flex flex-col  text-white bg-black'>
+      <div className='flex flex-col  '>
         <div className='absolute inset-0 z-10 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px]'>
           <header className=' pt-2 lg:px-24 px-2 mb-8 h-14 flex sm:justify-between justify-between items-center mt-2 '>
             <Link
@@ -50,11 +52,11 @@ export function Landingpage() {
                     <div className='flex flex-col justify-center space-y-4 text-center items-center '>
                       <div className='flex flex-col text-center items-center justify-center'>
                         <Link
-                          href={"/"}
+                          href={"https://github.com/JOHN-AMAO/WokPilot"}
                           target='_blank'
-                          className='whitespace-pre-wrap mb-2 text-center text-sm font-medium leading-none tracking-tight text-foreground from-foreground to-muted-foreground lg:text-lg'
+                          className='whitespace-pre-wrap bg-black rounded-xl text-center text-sm font-medium leading-none tracking-tight text-foreground from-foreground to-muted-foreground lg:text-lg'
                         >
-                          <ShimmerButton className='shadow-2xl h-10'>
+                          <ShimmerButton className='shadow-2xl h-10 text-white bg-background'>
                             Introducing WorkPilot V1
                           </ShimmerButton>
                         </Link>
@@ -100,6 +102,22 @@ export function Landingpage() {
                     delay={9}
                   />
                 </div>
+              </div>
+            </section>
+
+            <section className='bg-black w-full pt-10'>
+              <div className='flex flex-col justify-center items-center space-y-4'>
+                <SparklesText text='WorkPilot.' />
+                <div>
+                  <h1 className='text-2xl'>
+                    Boosting{" "}
+                    <span className='text-2xl bg-gradient-to-r from-[#30df48] via-[#b609a7] to-[#077e64] text-transparent bg-clip-text animation-text font-bold'>
+                      {" "}
+                      Productivity
+                    </span>
+                  </h1>
+                </div>
+                <BentoGridSecondDemo />
               </div>
             </section>
 
