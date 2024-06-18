@@ -75,8 +75,8 @@ const CreateProjectModal = () => {
             Customize your Project
           </DialogTitle>
           <DialogDescription className='text-center text-white'>
-            Give your Project a personality with a name and an image. You can
-            always change it later.
+            Give your Project more customization with a name and an image. You
+            can always change it later.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -126,7 +126,7 @@ const CreateProjectModal = () => {
             </div>
             <DialogFooter className='px-6 py-4'>
               <Button
-                className='w-full bg-red-500'
+                className='w-full bg-white'
                 variant='outline'
                 disabled={isLoading}
               >

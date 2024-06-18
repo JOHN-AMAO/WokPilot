@@ -70,12 +70,12 @@ export const MessageFileModal = () => {
       open={isModalOpen}
       onOpenChange={handleClose}
     >
-      <DialogContent className='bg-white text-black p-0 overflow-hidden'>
+      <DialogContent className='text-white p-0 overflow-hidden'>
         <DialogHeader className='pt-8 px-6'>
           <DialogTitle className='text-2xl text-center font-bold'>
             Add an attachment
           </DialogTitle>
-          <DialogDescription className='text-center text-zinc-500'>
+          <DialogDescription className='text-center text-white'>
             Send a file as a message
           </DialogDescription>
         </DialogHeader>

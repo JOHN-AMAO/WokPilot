@@ -50,7 +50,7 @@ const Members = async ({ id }: MemberProps) => {
   return (
     <div>
       {!!members?.length && (
-        <div className='mb-2'>
+        <div className='mb-2 mx-4'>
           <ServerSection
             sectionType='members'
             role={role}
