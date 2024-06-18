@@ -91,7 +91,7 @@ export function Landingpage() {
                 </div>
                 <div className='relative rounded-xl mt-10 mb-30 overflow-hidden'>
                   <Image
-                    src='/perfectview.jpg'
+                    src='https://utfs.io/f/2bd3f4b6-e867-449d-a6cf-3030a48a08a7-yuizw2.jpg'
                     width={2344}
                     className='border rounded-xl'
                     height={1100}
