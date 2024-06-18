@@ -44,7 +44,7 @@ model Project {
     @@index([profileId])
 }
 model Task {
-    id            String        @id @default(uuid())
+    id            String        @id @default(uuid()) @unique
     description   String
     fromDate      DateTime
     toDate        DateTime

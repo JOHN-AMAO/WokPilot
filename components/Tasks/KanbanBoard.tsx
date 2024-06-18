@@ -277,7 +277,7 @@ export function KanbanBoard({ projectId }: any) {
     console.log(activeId);
     console.log(projectId);
     if (!hasDraggableData(active)) return;
-
+    await updateStatus(projectId, activeId, status);
     const activeData = active.data.current;
     const overData = over.data.current;
 
@@ -315,12 +315,6 @@ export function KanbanBoard({ projectId }: any) {
       );
 
       // Call updateStatus to update the task status in the database
-
-      const updateData = async () => {
-        // @ts-ignore
-        await updateStatus(projectId, activeId, status);
-      };
-      updateData();
     }
   }
 

@@ -36,9 +36,9 @@ export const createTask = async (values: any) => {
 };
 
 export const updateStatus = async (
-  projectId: string,
-  taskId: string,
-  status: TaskStatus
+  projectId: any,
+  taskId: any,
+  status: any
 ) => {
   try {
     const newStatus = await db.task.update({

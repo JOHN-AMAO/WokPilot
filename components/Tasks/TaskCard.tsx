@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Collaborator, TaskStatus } from "@prisma/client";
 
 export interface Task {
-  id: UniqueIdentifier;
+  id: string;
   status: TaskStatus;
   description: string;
   duration: number;
