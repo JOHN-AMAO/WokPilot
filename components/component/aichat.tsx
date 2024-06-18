@@ -34,9 +34,9 @@ export function AIchat() {
 
   return (
     <div className='flex flex-col h-screen'>
-      <header className='bg-gray-900 text-white py-4 px-6'>
+      <header className='bg-gray-500 text-white py-4 px-6'>
         <div className='flex items-center justify-between'>
-          <h1 className='text-xl font-bold'>AI Chat</h1>
+          <h1 className='text-xl font-bold'>Work AI</h1>
           <div className='flex items-center space-x-4'>
             <button className='hover:bg-gray-800 rounded-md px-3 py-2'>
               <SettingsIcon className='h-5 w-5' />
@@ -87,11 +87,11 @@ export function AIchat() {
           ))}
         </div>
       </div>
-      <div className='bg-gray-100 dark:bg-gray-800 p-4'>
+      <div className='sticky bg-gray-700 p-3 mx-12 rounded-lg mb-5'>
         <div className='flex items-center space-x-2'>
-          <Textarea
-            className='flex-1 rounded-lg border border-gray-300 dark p-2'
-            placeholder='Type your message...'
+          <input
+            className='flex-1 rounded-lg border border-gray-300 dark p-2  pl-5'
+            placeholder='Message WorkAI'
             onChange={(e) => setMessage(e.target.value)}
             value={message}
           />

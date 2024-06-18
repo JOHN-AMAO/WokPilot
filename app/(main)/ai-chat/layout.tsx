@@ -11,7 +11,7 @@ const MainLayout = async ({ children }: { children: React.ReactNode }) => {
         <TaskNavigation />
         <SeparatorVerticalIcon className='h-full bg-zinc-300 dark:bg-zinc-900 w-1' />
       </div>
-      <main className='md:pl-[350px] h-full bg-black'>{children}</main>
+      <main className='md:pl-[320px] h-full bg-black'>{children}</main>
     </div>
   );
 };
