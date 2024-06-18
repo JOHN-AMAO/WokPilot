@@ -1,22 +1,23 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { UserButton } from "@clerk/nextjs";
 import {
   Layers,
-  Home,
   MessageCircle,
   ListChecks,
   BotMessageSquare,
   SeparatorVerticalIcon,
 } from "lucide-react";
-
 import { useRouter } from "next/navigation";
-import { ServerChannel } from "./ServerChannel";
+import { usePathname } from "next/navigation";
 
 const ProjectNavigation = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
-  const [route, setRoute] = useState("/project");
+  const here = pathname?.startsWith("/project");
+  const here2 = pathname?.startsWith("/tasks");
+  const here3 = pathname?.startsWith("/ai-chat");
 
   return (
     <>
@@ -27,10 +28,9 @@ const ProjectNavigation = () => {
         <div className='pt-10 flex flex-col gap-5'>
           <div
             className={`${
-              route === "/project" ? "bg-blue-500" : ""
+              here ? "bg-blue-500" : ""
             } rounded-md p-2 cursor-pointer`}
             onClick={() => {
-              setRoute("/project");
               router.push("/project");
             }}
           >
@@ -41,10 +41,9 @@ const ProjectNavigation = () => {
           </div>
           <div
             className={`${
-              route === "/tasks" ? "bg-blue-500" : ""
+              here2 ? "bg-blue-500" : ""
             } rounded-md p-2 cursor-pointer`}
             onClick={() => {
-              setRoute("/tasks");
               router.push("/tasks");
             }}
           >
@@ -55,10 +54,9 @@ const ProjectNavigation = () => {
           </div>
           <div
             className={`${
-              route === "/ai-chat" ? "bg-blue-500" : ""
+              here3 ? "bg-blue-500" : ""
             } rounded-md p-2 cursor-pointer`}
             onClick={() => {
-              setRoute("/ai-chat");
               router.push("/ai-chat");
             }}
           >
