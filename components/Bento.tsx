@@ -6,7 +6,9 @@ import {
   CirclePlus,
   KanbanSquare,
   LayoutTemplate,
+  LucideListTodo,
   SquareGanttChart,
+  VideoIcon,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -16,35 +18,35 @@ export function BentoGridSecondDemo() {
   const { theme } = useTheme();
   const items = [
     {
-      title: "Your AI planner",
-      description: "Plan your ideas with AI within seconds.",
+      title: "Your meeting platfrom",
+      description: "Host meetings, standups on WorkPilot.",
       header: (
         <Image
-          src='/perfectview.jpg'
+          src='/meetings.jpg'
           alt='TymelyPreview'
-          width={200}
-          height={300}
+          width={600}
+          height={600}
           className='z-0 overflow-hidden object-cover top-10 relative opacity-60 group-hover/bento:scale-105 transition-all'
         />
       ),
       className: "md:col-span-2",
-      icon: <CirclePlus className='h-4 w-4 text-neutral-500' />,
+      icon: <VideoIcon className='h-4 w-4 text-neutral-500' />,
       commingSoon: false,
     },
     {
-      title: "Easy to edit user interface",
-      description: "Easily edit your project and plan.",
+      title: "Create tasks",
+      description: "Create tasks, assign tasks to team members and more",
       header: (
         <Image
-          src='/perfectview.jpg'
+          src='/create-task.jpg'
           alt='TymelyPreview'
-          width={200}
-          height={300}
+          width={600}
+          height={600}
           className='z-0 overflow-hidden object-cover top-10 relative opacity-60 group-hover/bento:scale-105 transition-all'
         />
       ),
       className: "md:col-span-1",
-      icon: <LayoutTemplate className='h-4 w-4 text-neutral-500' />,
+      icon: <LucideListTodo className='h-4 w-4 text-neutral-500' />,
       commingSoon: false,
     },
     {
@@ -52,10 +54,10 @@ export function BentoGridSecondDemo() {
       description: "Manage your tasks and work on them with ease.",
       header: (
         <Image
-          src='/perfectview.jpg'
+          src='/manage-task.jpg'
           alt='TymelyPreview'
-          width={200}
-          height={300}
+          width={400}
+          height={400}
           className='z-0 overflow-hidden object-cover top-10 relative opacity-60 group-hover/bento:scale-105 transition-all'
         />
       ),
@@ -64,20 +66,21 @@ export function BentoGridSecondDemo() {
       commingSoon: false,
     },
     {
-      title: "Organize your life.",
-      description: "Organize your life and plan your weeks.",
+      title: "One commnunication Platforom.",
+      description:
+        "Collborate with your team and keep up with updates with chat",
       header: (
         <Image
-          src='/perfectview.jpg'
+          src='/view.jpg'
           alt='TymelyPreview'
-          width={200}
-          height={300}
+          width={600}
+          height={600}
           className='z-0 overflow-hidden object-cover opacity-60 group-hover/bento:scale-105 transition-all h-32 md:h-auto brightness-75 rounded-lg'
         />
       ),
       className: "md:col-span-2",
       icon: <KanbanSquare className='h-4 w-4 text-neutral-500' />,
-      commingSoon: true,
+      commingSoon: false,
     },
   ];
   return (

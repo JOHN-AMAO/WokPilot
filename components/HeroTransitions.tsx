@@ -26,3 +26,31 @@ export const HeroTransitions = () => {
     </div>
   );
 };
+
+export const HeroTransitions2 = () => {
+  return (
+    <div className='text-xl'>
+      <TypeAnimation
+        className='font-extabod'
+        preRenderFirstString={true}
+        sequence={[
+          500,
+          "every thing you need to be productive", // initially rendered starting point
+          1000,
+          "for seamless communication",
+          1000,
+          "for chat , live meetings, audio hangouts",
+          1000,
+          "for task management",
+          1000,
+          "for you and your team",
+          1000,
+          "for cross-team collaboration",
+          500,
+        ]}
+        speed={50}
+        repeat={Infinity}
+      />
+    </div>
+  );
+};

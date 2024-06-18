@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import MobileNav from "./MobileNav";
-import { HeroTransitions } from "./HeroTransitions";
+import { HeroTransitions, HeroTransitions2 } from "./HeroTransitions";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import ShimmerButton from "./magicui/shimer-button";
 import SparklesText from "./magicui/sparkles-text";
@@ -106,17 +106,24 @@ export function Landingpage() {
             </section>
 
             <section className='bg-black w-full pt-10'>
-              <div className='flex flex-col justify-center items-center space-y-4'>
+              <div className='flex flex-col justify-center items-center text-center space-y-4'>
                 <SparklesText text='WorkPilot.' />
-                <div>
-                  <h1 className='text-2xl'>
-                    Boosting{" "}
-                    <span className='text-2xl bg-gradient-to-r from-[#30df48] via-[#b609a7] to-[#077e64] text-transparent bg-clip-text animation-text font-bold'>
-                      {" "}
-                      Productivity
-                    </span>
-                  </h1>
+                <div className='flex flex-col gap-2'>
+                  <div className='flex  items-center justify-center gap-2 text-center'>
+                    <h1 className='text-xl'>One Platform</h1>
+                    <HeroTransitions2 />
+                  </div>
+                  <div>
+                    <h1 className='text-2xl'>
+                      Boosting{" "}
+                      <span className='text-2xl bg-gradient-to-r from-[#30df48] via-[#b609a7] to-[#077e64] text-transparent bg-clip-text animation-text font-bold'>
+                        {" "}
+                        Productivity
+                      </span>
+                    </h1>
+                  </div>
                 </div>
+
                 <BentoGridSecondDemo />
               </div>
             </section>
@@ -151,7 +158,7 @@ export function Landingpage() {
           </main>
           <footer className='flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t'>
             <p className='text-xs text-gray-500 dark:text-gray-400'>
-              © 2024 Fintech Platform. All rights reserved.
+              © 2024 WorkPilot Platform. All rights reserved.
             </p>
             <nav className='sm:ml-auto flex gap-4 sm:gap-6'>
               <Link
