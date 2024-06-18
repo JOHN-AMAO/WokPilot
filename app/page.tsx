@@ -4,7 +4,7 @@ import { Landingpage } from "@/components/landingpage";
 
 export default function Home() {
   return (
-    <main className=''>
+    <main className='bg-black'>
       <Landingpage />
     </main>
   );

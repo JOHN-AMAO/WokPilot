@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import MobileNav from "./MobileNav";
 import { HeroTransitions } from "./HeroTransitions";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import ShimmerButton from "./magicui/shimer-button";
 
 export function Landingpage() {
   return (
@@ -32,7 +34,7 @@ export function Landingpage() {
             </div>
           </header>
           <main className='flex-1'>
-            <section className='w-full py-4 md:py-4 lg:py-8 xl:py-16 px-6'>
+            <section className='w-full py-4 md:py-4 lg:py-4 xl:py-8 px-6'>
               <div className='container px-4 md:px-6 '>
                 <div className='flex flex-col text-center justify-center items-center'>
                   <div
@@ -47,13 +49,24 @@ export function Landingpage() {
                   >
                     <div className='flex flex-col justify-center space-y-4 text-center items-center '>
                       <div className='flex flex-col text-center items-center justify-center'>
+                        <Link
+                          href={"/"}
+                          target='_blank'
+                          className='whitespace-pre-wrap mb-2 text-center text-sm font-medium leading-none tracking-tight text-foreground from-foreground to-muted-foreground lg:text-lg'
+                        >
+                          <ShimmerButton className='shadow-2xl h-10'>
+                            Introducing WorkPilot V1
+                          </ShimmerButton>
+                        </Link>
                         <h1 className='text-3xl font-bold sm:text-4xl md:text-5xl xl:text-6xl/none '>
                           <span className='bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent'>
                             WorkPilot
                           </span>{" "}
                           is a better way
                         </h1>
-                        <HeroTransitions />
+                        <div>
+                          <HeroTransitions />
+                        </div>
                       </div>
                       <p className='max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400'>
                         WorkPilot is the way future teams build projucts, start
@@ -74,10 +87,23 @@ export function Landingpage() {
                     </div>
                   </div>
                 </div>
+                <div className='relative rounded-xl mt-10 mb-30 overflow-hidden'>
+                  <Image
+                    src='/perfectview.jpg'
+                    width={2344}
+                    className='border rounded-xl'
+                    height={1100}
+                    alt='workpilot ui'
+                  />
+                  <BorderBeam
+                    duration={12}
+                    delay={9}
+                  />
+                </div>
               </div>
             </section>
 
-            <section className='w-full py-12 md:py-24 lg:py-32 dark:bg-black '>
+            <section className='w-full py-12 md:py-24 lg:py-32 bg-black '>
               <div className='container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10'>
                 <div className='space-y-2'>
                   <h2 className='text-3xl font-bold tracking-tighter md:text-4xl/tight'>

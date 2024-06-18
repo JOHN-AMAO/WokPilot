@@ -1,28 +1,28 @@
 "use client";
 import React from "react";
-import TextTransition, { presets } from "react-text-transition";
-
-const TEXTS = [
-  "to manage Teams",
-  "to build products",
-  "to collaborate",
-  "to do great Work",
-];
+import { TypeAnimation } from "react-type-animation";
 
 export const HeroTransitions = () => {
-  const [index, setIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    const intervalId = setInterval(
-      () => setIndex((index) => index + 1),
-      3000 // every 3 seconds
-    );
-    return () => clearTimeout(intervalId);
-  }, []);
-
   return (
-    <h1 className='text-3xl mt-2 font-bold sm:text-3xl md:text-4xl xl:text-6xl/none bg-gradient-to-r from-fuchsia-600 to-purple-600 rounded-sm'>
-      <TextTransition>{TEXTS[index % TEXTS.length]}</TextTransition>
-    </h1>
+    <div className='mt-4'>
+      <TypeAnimation
+        className='font-extabold text-2xl sm:text-md'
+        preRenderFirstString={true}
+        sequence={[
+          500,
+          "to collaborate", // initially rendered starting point
+          1000,
+          "to build and manage Teams",
+          1000,
+          "to build and manage Projects",
+          1000,
+          "be productive",
+          500,
+        ]}
+        speed={50}
+        style={{ fontSize: "4em" }}
+        repeat={Infinity}
+      />
+    </div>
   );
 };
