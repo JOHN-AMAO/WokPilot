@@ -77,8 +77,8 @@ export const CreateServerModal = () => {
             Customize your Project
           </DialogTitle>
           <DialogDescription className='text-center text-white'>
-            Give your server more customization with a name and an image. You
-            can always change it later.
+            Give your Project or Team more customization with a name and an
+            image. You can always change it later.
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
