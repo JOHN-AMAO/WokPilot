@@ -7,6 +7,7 @@ import { cva } from "class-variance-authority";
 import { GripVertical, TimerIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Collaborator, TaskStatus } from "@prisma/client";
+import { AnimatedTooltip } from "../magicui/animated-tooltip";
 
 export interface Task {
   id: string;
@@ -93,13 +94,18 @@ export function TaskCard({ task, isOverlay, projectId }: TaskCardProps) {
       <CardContent className='px-3 pt-3 pb-6 text-left whitespace-pre-wrap '>
         <div className='flex flex-col gap-4'>
           <div>{task.description}</div>
+
           <div className='flex justify-between '>
-            <div className='flex flex-row gap-2'>
-              <TimerIcon />
-              <p>{task.duration} days</p>
-            </div>
             <div>
-              <p>collaborators</p>
+              {task.collaborators?.map((collaborator, key) => (
+                <p key={collaborator.id}>{collaborator.name}</p>
+              ))}
+            </div>
+            <div className='flex flex-row gap-1'>
+              <TimerIcon />
+              <p className='text-yellow-600'>
+                Due: {new Date(task.toDate).toLocaleDateString("en-US")}
+              </p>
             </div>
           </div>
         </div>

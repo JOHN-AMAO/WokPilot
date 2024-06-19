@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -26,7 +26,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { CalendarRange, Plus } from "lucide-react";
 import { MultiSelect } from "@/components/multi-select";
-import { Cat, Dog, Fish, Rabbit, Turtle } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -38,14 +37,7 @@ import { format } from "date-fns";
 import { createTask } from "@/lib/tasks";
 import { useTaskContext } from "@/Provider/TaskContext";
 import { useRouter } from "next/navigation";
-
-const CollaboratorsList = [
-  { value: "Alice", label: "Alice", icon: Turtle },
-  { value: "Bob", label: "Bob", icon: Cat },
-  { value: "Charlie", label: "Charlie", icon: Dog },
-  { value: "Dave", label: "Dave", icon: Rabbit },
-  { value: "Eve", label: "Eve", icon: Fish },
-];
+import { getMembers } from "@/lib/members";
 
 const formSchema = z.object({
   description: z.string().min(2).max(50),
@@ -64,10 +56,12 @@ const AddTask = ({ projectId, profileId }: any) => {
   const { updateTasks } = useTaskContext();
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [selectedCollaborators, setSelectedCollaborators] = useState<string[]>([
-    "Alice",
-    "Bob",
-  ]);
+  const [selectedCollaborators, setSelectedCollaborators] = useState<string[]>(
+    []
+  );
+  const [collaboratorOptions, setCollaboratorOptions] = useState<
+    { value: string; label: string }[]
+  >([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -83,15 +77,26 @@ const AddTask = ({ projectId, profileId }: any) => {
     },
   });
 
+  const getCollaborators = async () => {
+    const members = await getMembers(projectId);
+    const names = members.map((member) => ({
+      value: member.profile.name,
+      label: member.profile.name,
+    }));
+    setCollaboratorOptions(names);
+  };
+
+  useEffect(() => {
+    getCollaborators();
+  }, [projectId]);
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     values.collaborators = selectedCollaborators; // Ensure selectedCollaborators are included in form values
     console.log(values);
     try {
       const task = await createTask(values);
       updateTasks();
-      // window.location.reload();
       console.log("Task created successfully:", task);
-      // axios.post("/api/tasks", values);
     } catch (error) {
       console.error("Error creating task:", error);
     }
@@ -107,7 +112,10 @@ const AddTask = ({ projectId, profileId }: any) => {
         onOpenChange={setOpen}
       >
         <DialogTrigger>
-          <button className=' bg-blue-600 transition p-2 hover:scale-110 duration-100  rounded-lg flex'>
+          <button
+            onClick={() => getCollaborators()}
+            className='bg-blue-600 transition p-2 hover:scale-110 duration-100 rounded-lg flex'
+          >
             <Plus />
             <span>Add Task</span>
           </button>
@@ -147,7 +155,7 @@ const AddTask = ({ projectId, profileId }: any) => {
               <div className='p-2 max-w-lg'>
                 <h1 className='text-xl font-bold mb-4'>Assign Collaborators</h1>
                 <MultiSelect
-                  options={CollaboratorsList}
+                  options={collaboratorOptions}
                   onValueChange={(newValues) => {
                     setSelectedCollaborators(newValues);
                     form.setValue("collaborators", newValues); // Update the form value for collaborators
@@ -162,7 +170,7 @@ const AddTask = ({ projectId, profileId }: any) => {
                   control={form.control}
                   name='duration'
                   render={({ field }) => (
-                    <FormItem className='flex flex-col'>
+                    <FormItem className='flex flex-col mt-2'>
                       <FormLabel>Start and End Date</FormLabel>
                       <Popover modal={true}>
                         <PopoverTrigger asChild>
@@ -217,9 +225,7 @@ const AddTask = ({ projectId, profileId }: any) => {
               </div>
               <Button
                 type='submit'
-                onClick={() => {
-                  setOpen(false);
-                }}
+                onClick={() => setOpen(false)}
               >
                 Submit
               </Button>
