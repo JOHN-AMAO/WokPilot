@@ -71,7 +71,7 @@ export function Landingpage() {
                         </div>
                       </div>
                       <p className='max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400'>
-                        WorkPilot is the way future teams build projucts, start
+                        WorkPilot is the way modern teams build projucts, start
                         projects, do great work
                       </p>
 
